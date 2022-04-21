@@ -1,25 +1,67 @@
 import DZDiscovery from '@/views/discovery';
-import DZDownloads from '@/views/downloads';
-import DZFriends from '@/views/friends';
+import DZDownload from '@/views/download';
+import DZSubscription from '@/views/subscription';
 import DZMine from '@/views/mine';
+import DZRecommendation from '@/views/discovery/pages/recommendation';
+import DZRanking from '@/views/discovery/pages/ranking';
+import DZPlaylist from '@/views/discovery/pages/playlist';
+import DZPodcast from '@/views/discovery/pages/podcast';
+import DZSinger from '@/views/discovery/pages/singer';
+import DZAlbum from '@/views/discovery/pages/album';
+import { Redirect } from 'react-router-dom';
 
 const routes = [
     {
-        path:"/",
+        path:["/","/index","/home"],
         exact:true,
-        component:DZDiscovery
+        render:()=> (<Redirect to="/discovery"/>)
+    },
+    {
+        path:"/discovery",
+        component:DZDiscovery,
+        routes:[
+            {
+                path:"/discovery/",
+                exact:true,
+                render:()=>(<Redirect to="/discovery/recommendation"/>)
+            },
+            {
+                path:"/discovery/recommendation",
+                component:DZRecommendation
+            },
+            {
+                path:"/discovery/ranking",
+                component:DZRanking
+            },
+            {
+                path:"/discovery/playlist",
+                component:DZPlaylist
+            },
+            {
+                path:"/discovery/podcast",
+                component:DZPodcast
+            },
+            {
+                path:"/discovery/singer",
+                component:DZSinger
+            },
+            {
+                path:"/discovery/album",
+                component:DZAlbum
+            },
+        ]
     },
     {
         path:"/mine",
         component:DZMine
     },
     {
-        path:"/friends",
-        component:DZFriends
+        path:"/subscription",
+        component:DZSubscription
     },
     {
-        path:"/downloads",
-        component:DZDownloads
+        path:"/download",
+        component:DZDownload
     }
 ];
 

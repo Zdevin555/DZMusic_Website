@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import pic from '@/assets/img/sprite_01.png';
 
 export const HeaderWrapper = styled.div`
-    height:75px;
+    height:85px;
     color:#fff;
     background-color: #242424;
     font-size:20px;
 
     .content {
-        height: 70px;
+        height: 80px;
         display:flex;
         justify-content: space-between;
     }
@@ -27,7 +27,7 @@ export const HeaderLeft = styled.div`
         display:inline-block;
         height:60px;
         width:237px;
-        background-position: 0 -15px;
+        background-position: 0 -10px;
         background-size:330px auto;
         text-indent: -9999px;
     }
@@ -35,7 +35,7 @@ export const HeaderLeft = styled.div`
     .select-list{
         display:flex;
         /*内容居中 */
-        line-height:70px;
+        line-height:80px;
 
         .select-item{
             /*相对定位,与后面的绝对定位配合，设置精灵图中的
@@ -78,7 +78,6 @@ export const HeaderLeft = styled.div`
                 text-decoration:none;
             }
 
-            /*NavLink匹配到时默认会有active的classname */
             .active .icon{
                 position:absolute;
                 display:inline-block;

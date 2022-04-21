@@ -21,6 +21,10 @@
  * 6.1 安装antd与@ant-design/icons
  * 6.2 导入input组件，为使其生效，需要在reset.css中导入"~antd/dist/antd.css"
  * 
+ * 7.关于NavLink的三点
+ * 7.1 NavLink被选中时，即url与to属性值匹配时，默认会有active的classname
+ * 7.2 Link系的to属性不支持多路径
+ * 7.3 to属性与route中的path属性没有必然联系
  * 
  * justify-content: space-between;
  * .text-nowrap {
@@ -56,7 +60,7 @@ const DZAppHeader = memo(() => {
               headerBanners.map((item, index) => {
                 return (
                   <div key={item.title} className="select-item">
-                    <NavLink to={item.link} exact>
+                    <NavLink to={item.link}>
                       {item.title}
                       <i className="sprite_01 icon"></i>
                     </NavLink>
@@ -78,7 +82,6 @@ const DZAppHeader = memo(() => {
             <NavLink to="/">Sign in</NavLink>
           </div>
         </HeaderRight>
-
       </div>
       <div className="divider"></div>
     </HeaderWrapper>
