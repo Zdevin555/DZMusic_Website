@@ -1,5 +1,8 @@
 import React, { memo } from 'react';
 
+import { discoveryMenu } from '@/common/local-data';
+// import request from '@/services/request';
+
 import { NavLink } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import {
@@ -7,9 +10,9 @@ import {
   TopSubMenu
 } from './style';
 
-import { discoveryMenu } from '@/common/local-data';
-
 const DZDiscovery = memo((props) => {
+
+  const {route} = props;
   return (
     <DiscoveryWrapper>
       <div className="top">
@@ -25,7 +28,7 @@ const DZDiscovery = memo((props) => {
           }
         </TopSubMenu>
       </div>
-      {renderRoutes(props.route.routes)}
+      {renderRoutes(route.routes)}
     </DiscoveryWrapper >
   )
 })
