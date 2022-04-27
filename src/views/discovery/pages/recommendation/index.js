@@ -50,22 +50,77 @@
  *     2.9.1 之前通过mapStateToProps已经赋予了组件props中一个topBanners
  *     的属性，现在可以通过解构直接使用。
  *     2.9.2 其内的值就是reducer执行后，更新state后保存在里面的值
- *     
+ * 
+ * 3.redux hook
+ * 3.1组件和redux进行关联，其实主要就进行两项操作：获取数据(state)和进行
+ *    操作(派发action)
+ *    3.1.1 派发操作：
+ *    不再需要mapDispatchToProps将dispatch进行传递，而是通过useDispatch
+ *    直接获取dispatch对象，该hook来自于react-redux
+ *    3.1.2 获取数据
+ *    不再需要mapStateToProps，使用useSelector。该函数参数有两个，其一是
+ *    回调函数，接收state为入参，返回的内容会作为useSelector的返回值传递。
+ *    因此，可以直接返回要获取的数据对象。其二是shallowEqual，用于指定是
+ *    否进行浅层比较，默认非浅层，因此会造成性能浪费，所以shallowEqual需
+ *    要设定
+ * 3.2immutableJS
+ *    3.2.1 reducer执行函数功能后返回的新对象，由于可能只是修改了一个数据
+ * 而致使所有内容进行浅拷贝是会降低性能的
+ *    3.2.2 immutable对象的特点是只要修改了immutable对象，就会返回一个新
+ * 对象，而旧对象不发生改变。同时，返回的新对象的方式采取了新算法（结构共享
+ * ）反而节省了内存，性能更好。
+ *    3.2.3 immutable对象常见API
+ *      JS对象转成Immutable对象：map（内部的复杂类型不再转成immutable对象）
+ *      JS数组转成Immutable对象：list；
+ *      深层转换：fromJS（内部的复杂类型也都转成immutable对象）；
+ *      Immutable对象转成JS对象：toJS；
+ *      修改数据：set
+ *      获取数据：get
+ *      获取迭代(多层内的)数据：getIn(["外层"],["内层"])
+ *    3.2.4 immutable对象在项目中的运用主要是结合redux(主要的数据改变之处)
+ *      其一：所有的reducer中管理的state内容都转换成immutable对象，修改数
+ *      据使用set方法；
+ *      其二：使用redux-immutable中的combineRedeucers,因为总store中合并后
+ *      的reducer也需要在每次修改后返回一个新对象，因此也要使用immutable
+ *    3.2.5 安装immutableJS和redux-immutable：npm i immutable redux-immutable;
+ *    3.2.6 模块化导入后可以直接使用，比如导入Map，则可直接用Map对state进
+ * 行包裹
+ *    3.2.7 组件的reducer中修改数据需要使用state.set(“xx”，action.xx)
+ *    3.2.8 在组件中取数据时，也要改变方式。因为state中的recommendation
+ * 内的state已经是immutable对象了
+ *    3.2.9 根路径下store的reducer文件内涉及到子reducer的合并，需要借助
+ * redux-immutable中的combineRedeucers进行
+ *    
+ *    
  * 
  * 
  * 
  */
 import React, { memo, useEffect } from 'react';
-import {connect} from 'react-redux';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+
 import { getTopBannerAction } from './store/actionCreator';
 
-function DZRecommendation(props){
+function DZRecommendation(){
 
-  const {getTopBanners,topBanners} = props;
-   
+  const {topBanners} = useSelector(state => ({
+    // topBanners:state.recommendation.topBanners
+    //当子组件使用immutable后，如下获取数据
+    //topBanners:state.recommendation.get("topBanners")
+    //当combineReducer也使用immutable后，则为如下
+    //topBanners:state.get("recommendation").get("topBanners")
+    //使用getIn对上面的多层获取进行简化
+    topBanners:state.getIn(["recommendation","topBanners"])
+  }),shallowEqual);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getTopBanners();
-  }, [getTopBanners]);
+    dispatch(getTopBannerAction())
+    //此处依赖不需要放入getTopBannerAction，因为它不会引起组件重新渲染
+    //因此无论怎么改动也没有意义。[]内放都是发生改变致使组件会发
+    //生重新渲染的内容
+  }, [dispatch])
+  
 
   return (
     <div>
@@ -74,14 +129,4 @@ function DZRecommendation(props){
   )
 }
 
-const mapStateToProps = state => ({
-  topBanners:state.recommendation.topBanners
-});
-
-const mapDispatchToProps = dispatch => ({
-  getTopBanners:()=>{
-    dispatch(getTopBannerAction())
-  }
-});
-
-export default connect(mapStateToProps,mapDispatchToProps)(memo(DZRecommendation));
+export default memo(DZRecommendation);
