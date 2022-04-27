@@ -63,13 +63,14 @@
  *    因此，可以直接返回要获取的数据对象。其二是shallowEqual，用于指定是
  *    否进行浅层比较，默认非浅层，因此会造成性能浪费，所以shallowEqual需
  *    要设定
- * 3.2immutableJS
- *    3.2.1 reducer执行函数功能后返回的新对象，由于可能只是修改了一个数据
+ * 
+ * 4.immutableJS
+ *    4.1 reducer执行函数功能后返回的新对象，由于可能只是修改了一个数据
  * 而致使所有内容进行浅拷贝是会降低性能的
- *    3.2.2 immutable对象的特点是只要修改了immutable对象，就会返回一个新
+ *    4.2 immutable对象的特点是只要修改了immutable对象，就会返回一个新
  * 对象，而旧对象不发生改变。同时，返回的新对象的方式采取了新算法（结构共享
  * ）反而节省了内存，性能更好。
- *    3.2.3 immutable对象常见API
+ *    4.3 immutable对象常见API
  *      JS对象转成Immutable对象：map（内部的复杂类型不再转成immutable对象）
  *      JS数组转成Immutable对象：list；
  *      深层转换：fromJS（内部的复杂类型也都转成immutable对象）；
@@ -77,18 +78,19 @@
  *      修改数据：set
  *      获取数据：get
  *      获取迭代(多层内的)数据：getIn(["外层"],["内层"])
- *    3.2.4 immutable对象在项目中的运用主要是结合redux(主要的数据改变之处)
+ *    4.4 immutable对象在项目中的运用主要是结合redux(主要的数据改变之处)
  *      其一：所有的reducer中管理的state内容都转换成immutable对象，修改数
  *      据使用set方法；
  *      其二：使用redux-immutable中的combineRedeucers,因为总store中合并后
  *      的reducer也需要在每次修改后返回一个新对象，因此也要使用immutable
- *    3.2.5 安装immutableJS和redux-immutable：npm i immutable redux-immutable;
- *    3.2.6 模块化导入后可以直接使用，比如导入Map，则可直接用Map对state进
+ *    4.5 使用：
+ *    4.5.1 安装immutableJS和redux-immutable：npm i immutable redux-immutable;
+ *    4.5.2 模块化导入后可以直接使用，比如导入Map，则可直接用Map对state进
  * 行包裹
- *    3.2.7 组件的reducer中修改数据需要使用state.set(“xx”，action.xx)
- *    3.2.8 在组件中取数据时，也要改变方式。因为state中的recommendation
+ *    4.5.3 组件的reducer中修改数据需要使用state.set(“xx”，action.xx)
+ *    4.5.4 在组件中取数据时，也要改变方式。因为state中的recommendation
  * 内的state已经是immutable对象了
- *    3.2.9 根路径下store的reducer文件内涉及到子reducer的合并，需要借助
+ *    4.5.5 根路径下store的reducer文件内涉及到子reducer的合并，需要借助
  * redux-immutable中的combineRedeucers进行
  *    
  *    
