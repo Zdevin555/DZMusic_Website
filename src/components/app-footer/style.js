@@ -21,7 +21,6 @@ export const DZFooterWrapper = styled.div`
 `;
 
 export const DZFooterLeft = styled.div`
-    background-color: #f2f2f2;
     position:relative;
 
     .declaim{
@@ -57,7 +56,6 @@ export const DZFooterRight = styled.div`
     display:flex;
     flex:1;
     margin-left:50px;
-   
     .item{
         display:flex;
         flex-direction: column; 

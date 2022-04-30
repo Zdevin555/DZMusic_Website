@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import {combineReducers} from 'redux-immutable';
 //
 import {reducer as recommendationReducer} from '../views/discovery/pages/recommendation/store/index';
 

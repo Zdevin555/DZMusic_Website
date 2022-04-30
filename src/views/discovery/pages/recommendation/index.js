@@ -93,41 +93,80 @@
  *    4.5.5 根路径下store的reducer文件内涉及到子reducer的合并，需要借助
  * redux-immutable中的combineRedeucers进行
  *    
- *    
- * 
+ * 5. recommendation中的子组件之轮播图
+ * 5.1 代码组织方式：
+ *    recommendation下创建文件夹subCpnts用于存放其下所有子组件
+ * 5.2 topBanner
+ *    5.2.1 内建index和style
+ *    5.2.2 关于轮播图数据的请求从recommendation移动到topBanner下，
+ *    5.2.3 轮播图功能的组件需要导入antd中的carousel；并使用其下的autoplay，
+ *          effect，beforeChange等属性，以及next和prev方法
+ *    5.2.4 css布局中，注意flex的用法以及bannerControl绝对定位的使用
+ *    5.2.5 bannerControl组件的点击事件通过ref传递给carousel组件
+ *    5.2.6 在设置轮播图背景时，需要根据当前的banner设置对应的图片作为背景
+ *          a. 这需要将当前的图片url传递给对应组件的styled模板块，并将其设
+ *          置为background-image。此处使用了styled-component提供的props
+ *          传递background-image:url(${props => props.bgImage})
+ *          b. 通过监听轮播图切换实现不同的图片对应不同的背景。此处需要借助
+ *          carousel组件的beforeChange属性，其属性值是一个回调函数。该回
+ *          调函数会在图片切换前回调，并自动接收当前图片id与切换到的图片id
+ *          作为参数。
+ *              b-1. beforeChange对应的回调函数相当于是定义在组件内传递给
+ *              子组件供其调用的，故该回调函数需使用useCallback或useMemo
+ *              包裹，避免性能浪费
+ *              b-2. beforeChange属性对应的回调函数有from和to两个入参，通
+ *              过测试console.log(to)可知，to参数就是下一张轮播图的索引。
+ *              b-3.如何通过回调函数取得索引值取到其对应的图片？这就需要该
+ *              函数式组件具备一个记录当前显示图片索引值的state。这个state
+ *              只是该组件使用，因此不需要redux，直接使用useState即可，如
+ *              const [currentIndex, setCurrentIndex] = useState(0);
+ *              此时，在beforeChange的回调中就可以使用setCurrentIndex(to)
+ *              更新当前图片index，并进行重新渲染。到这时，就可以通过以下
+ *              获取当前的图片topBanners[currentIndex].imageUrl
+ *              b-4. 但直接将bgImage=topBanners[currentIndex].imageUrl存
+ *              在问题，因为在最开始还没有请求数据过来时，topBanners数组是
+ *              空的，那么topBanners[0]取到的就是undefined，再调用imageUrl
+ *              就会报错。故可用&&改写。&&左边是topBanners[currentIndex]，
+ *              若是undefined就是直接返回bgImage为undefined，在react中，
+ *              对bgImage={undefined}是不会报错的，只是当做没有该属性;当不
+ *              是undefined，就以&&右边的内容(topBanners[currentIndex].
+ *              imageUrl)为最终结果 
  * 
  * 
  */
-import React, { memo, useEffect } from 'react';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import React, { memo } from 'react';
 
-import { getTopBannerAction } from './store/actionCreator';
+import DZTopBanner from './subCpnts/top-banner';
+import {DZRecommendationWrapper} from './style';
+// import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+
+// import { getTopBannerAction } from './store/actionCreator';
 
 function DZRecommendation(){
 
-  const {topBanners} = useSelector(state => ({
-    // topBanners:state.recommendation.topBanners
-    //当子组件使用immutable后，如下获取数据
-    //topBanners:state.recommendation.get("topBanners")
-    //当combineReducer也使用immutable后，则为如下
-    //topBanners:state.get("recommendation").get("topBanners")
-    //使用getIn对上面的多层获取进行简化
-    topBanners:state.getIn(["recommendation","topBanners"])
-  }),shallowEqual);
-  const dispatch = useDispatch();
+  // const {topBanners} = useSelector(state => ({
+  //   // topBanners:state.recommendation.topBanners
+  //   //当子组件使用immutable后，如下获取数据
+  //   //topBanners:state.recommendation.get("topBanners")
+  //   //当combineReducer也使用immutable后，则为如下
+  //   //topBanners:state.get("recommendation").get("topBanners")
+  //   //使用getIn对上面的多层获取进行简化
+  //   topBanners:state.getIn(["recommendation","topBanners"])
+  // }),shallowEqual);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getTopBannerAction())
-    //此处依赖不需要放入getTopBannerAction，因为它不会引起组件重新渲染
-    //因此无论怎么改动也没有意义。[]内放都是发生改变致使组件会发
-    //生重新渲染的内容
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getTopBannerAction())
+  //   //此处依赖不需要放入getTopBannerAction，因为它不会引起组件重新渲染
+  //   //因此无论怎么改动也没有意义。[]内放都是发生改变致使组件会发
+  //   //生重新渲染的内容
+  // }, [dispatch])
   
 
   return (
-    <div>
-      DZRecommendation:{topBanners.length}
-    </div>
+    <DZRecommendationWrapper>
+      <DZTopBanner></DZTopBanner>
+    </DZRecommendationWrapper>
   )
 }
 
