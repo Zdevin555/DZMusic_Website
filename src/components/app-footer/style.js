@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DZFooterWrapper = styled.div`
+export const FooterWrapper = styled.div`
     height:170px;
     color:#666;
     font-size:14px;
@@ -20,7 +20,7 @@ export const DZFooterWrapper = styled.div`
     }
 `;
 
-export const DZFooterLeft = styled.div`
+export const FooterLeft = styled.div`
     position:relative;
 
     .declaim{
@@ -52,7 +52,7 @@ export const DZFooterLeft = styled.div`
     }
 
 `;
-export const DZFooterRight = styled.div`
+export const FooterRight = styled.div`
     display:flex;
     flex:1;
     margin-left:50px;

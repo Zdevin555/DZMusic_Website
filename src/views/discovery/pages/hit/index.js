@@ -136,13 +136,21 @@
  */
 import React, { memo } from 'react';
 
-import DZTopBanner from './subCpnts/top-banner';
-import {DZRecommendationWrapper} from './style';
+import DZHitBanner from './subCpnts/hit-banner';
+import DZBigHit from './subCpnts/big-hit';
+import DZHitAlbum from './subCpnts/hit-album';
+import DZHitRanking from './subCpnts/hit-ranking';
+import {
+  HitWrapper,
+  HitTopics,
+  LeftHitTopics,
+  RightHitTopics
+} from './style';
 // import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
 // import { getTopBannerAction } from './store/actionCreator';
 
-function DZRecommendation(){
+function DZHit(){
 
   // const {topBanners} = useSelector(state => ({
   //   // topBanners:state.recommendation.topBanners
@@ -164,10 +172,20 @@ function DZRecommendation(){
   
 
   return (
-    <DZRecommendationWrapper>
-      <DZTopBanner></DZTopBanner>
-    </DZRecommendationWrapper>
+    <HitWrapper>
+      <DZHitBanner/>
+      <HitTopics className='wrap-v2'>
+        <LeftHitTopics className="left">
+          <DZBigHit/>
+          <DZHitAlbum/>
+          <DZHitRanking/>
+        </LeftHitTopics>
+        <RightHitTopics>
+
+        </RightHitTopics>
+      </HitTopics>
+    </HitWrapper>
   )
 }
 
-export default memo(DZRecommendation);
+export default memo(DZHit);

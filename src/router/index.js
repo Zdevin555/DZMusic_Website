@@ -2,7 +2,7 @@ import DZDiscovery from '@/views/discovery';
 import DZDownload from '@/views/download';
 import DZSubscription from '@/views/subscription';
 import DZMine from '@/views/mine';
-import DZRecommendation from '@/views/discovery/pages/recommendation';
+import DZHit from '@/views/discovery/pages/hit';
 import DZRanking from '@/views/discovery/pages/ranking';
 import DZPlaylist from '@/views/discovery/pages/playlist';
 import DZPodcast from '@/views/discovery/pages/podcast';
@@ -23,11 +23,11 @@ const routes = [
             {
                 path:"/discovery/",
                 exact:true,
-                render:()=>(<Redirect to="/discovery/recommendation"/>)
+                render:()=>(<Redirect to="/discovery/hit"/>)
             },
             {
-                path:"/discovery/recommendation",
-                component:DZRecommendation
+                path:"/discovery/hit",
+                component:DZHit
             },
             {
                 path:"/discovery/ranking",

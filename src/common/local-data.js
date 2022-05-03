@@ -21,8 +21,8 @@ export const headerBanners = [
 
 export const discoveryMenu = [
     {
-        title:"Recommendation",
-        link:"/discovery/recommendation",
+        title:"Big Hit",
+        link:"/discovery/hit",
     },
     {
         title:"Ranking",
@@ -46,7 +46,7 @@ export const discoveryMenu = [
     }
 ];
 
-export const leftFooterBanners = [
+export const leftFooterContent = [
     {
         title:"Terms of Service",
         link:"https://github.com/",

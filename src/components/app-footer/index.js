@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
 
 import {
-  DZFooterWrapper,
-  DZFooterLeft,
-  DZFooterRight
+  FooterWrapper,
+  FooterLeft,
+  FooterRight
 } from './style';
 
 import { 
-  leftFooterBanners,
+  leftFooterContent,
   rightFooterContent,
   company
 } from '@/common/local-data';
@@ -16,13 +16,13 @@ import {
 
 const DZAppFooter = memo(() => {
   return (
-    <DZFooterWrapper>
+    <FooterWrapper>
       <div className="footer-top">
         <div className="wrap-v2 content">
-          <DZFooterLeft className="footer-left">
+          <FooterLeft className="footer-left">
             <div className="declaim">
               {
-                leftFooterBanners.map((item,index)=>{
+                leftFooterContent.map((item,index)=>{
                   return (
                     <div key={item.title} className="item">
                       <a href={item.link}>{item.title}</a>
@@ -33,8 +33,8 @@ const DZAppFooter = memo(() => {
               }
             </div>
             <p>{company}</p>
-          </DZFooterLeft>
-          <DZFooterRight className="footer-right">
+          </FooterLeft>
+          <FooterRight className="footer-right">
             {rightFooterContent.map((item,index)=>{
               return (
                   <div key={item.title} className="item">
@@ -45,11 +45,11 @@ const DZAppFooter = memo(() => {
                   </div>
               )
             })}
-          </DZFooterRight>
+          </FooterRight>
         </div>
       </div>
       <div className="footer-bottom"></div>
-    </DZFooterWrapper>
+    </FooterWrapper>
   )
 })
 

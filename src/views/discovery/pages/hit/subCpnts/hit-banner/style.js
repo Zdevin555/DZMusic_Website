@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import pic1 from '@/assets/img/download.png';
 import pic2 from '@/assets/img/banner_sprite.png';
 
-export const TopBannerWrapper = styled.div`
+export const HitBannerWrapper = styled.div`
     background:url(${props => props.bgImage}) center center/6000px;
 
     .content{
@@ -12,7 +12,7 @@ export const TopBannerWrapper = styled.div`
     }
 `;
 
-export const TopBannerLeft = styled.div`
+export const HitBannerLeft = styled.div`
     flex:1;
     width:0;
     .item{
@@ -24,7 +24,7 @@ export const TopBannerLeft = styled.div`
     }  
 `;
 
-export const TopBannerRight = styled.div`
+export const HitBannerRight = styled.div`
     width:268px;
     height:300px;
     background:url(${pic1}) 0 0;
@@ -32,7 +32,7 @@ export const TopBannerRight = styled.div`
 
 `;
 
-export const TopBannerControl = styled.div`
+export const HitBannerControl = styled.div`
     position:absolute;
     left:0;
     right:0;
