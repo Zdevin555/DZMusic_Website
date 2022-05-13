@@ -2,12 +2,15 @@ import DZDiscovery from '@/views/discovery';
 import DZDownload from '@/views/download';
 import DZSubscription from '@/views/subscription';
 import DZMine from '@/views/mine';
+import DZSong from '@/views/song';
+
 import DZHit from '@/views/discovery/pages/hit';
 import DZRanking from '@/views/discovery/pages/ranking';
 import DZPlaylist from '@/views/discovery/pages/playlist';
 import DZPodcast from '@/views/discovery/pages/podcast';
 import DZSinger from '@/views/discovery/pages/singer';
 import DZAlbum from '@/views/discovery/pages/album';
+
 import { Redirect } from 'react-router-dom';
 
 const routes = [
@@ -62,6 +65,10 @@ const routes = [
     {
         path:"/download",
         component:DZDownload
+    },
+    {
+        path:"/song",
+        component:DZSong
     }
 ];
 

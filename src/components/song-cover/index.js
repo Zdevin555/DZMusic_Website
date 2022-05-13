@@ -10,7 +10,7 @@ import {
     CoverWrapper,
 } from './style';
 
-const DZMusicCover = memo((props) => {
+const DZSongCover = memo((props) => {
 
     const { playCount = NaN, picUrl,id,name} = props;
 
@@ -31,4 +31,4 @@ const DZMusicCover = memo((props) => {
     )
 })
 
-export default DZMusicCover
+export default DZSongCover

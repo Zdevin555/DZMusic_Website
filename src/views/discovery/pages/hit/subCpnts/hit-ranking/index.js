@@ -1,18 +1,41 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import DZHitHeader from '../hit-header'
+
+import DZHitHeader from '../hit-header';
+import { getHitRankingsAction } from '../../store/actionCreator';
+import DZSingleRanking from './rankingCpnts';
 import {
   HitRankingWrapper
-} from './style'
+} from './style';
 
 const DZHitRanking = memo(() => {
+
+  const dispatch = useDispatch();
+  const { hitUpsurgeRanking, hitFreshRanking, hitOriginalRanking} = useSelector(
+    state => ({
+      hitUpsurgeRanking: state.getIn(["hit", "hitUpsurgeRanking"]),
+      hitFreshRanking: state.getIn(["hit", "hitFreshRanking"]),
+      hitOriginalRanking: state.getIn(["hit", "hitOriginalRanking"]),
+    }), shallowEqual);
+
+  useEffect(() => {
+    dispatch(getHitRankingsAction(0));
+    dispatch(getHitRankingsAction(1));
+    dispatch(getHitRankingsAction(2));
+  }, [dispatch])
+
   return (
-    <HitRankingWrapper>
+    <HitRankingWrapper >
       <div className="header">
         <DZHitHeader title="Ranking" />
       </div>
+      <div className="ranking">
+        <DZSingleRanking info={hitUpsurgeRanking} rankName={"Upsurge"}/>
+        <DZSingleRanking info={hitFreshRanking} rankName={"Fresh"}/>
+        <DZSingleRanking info={hitOriginalRanking} rankName={"Original"}/>
+      </div>
     </HitRankingWrapper>
-
   )
 })
 

@@ -38,13 +38,13 @@ const DZHitBanner = memo(() => {
     <HitBannerWrapper bgImage={bgImage}>
       <div className="content wrap-v2">
         <HitBannerLeft>
-          <Carousel effect="fade" autoplay="true" ref={bannerRef} beforeChange={changeBanner}>
+          <Carousel effect="fade" autoplay="true" ref={bannerRef} beforeChange={changeBanner} className="ant-carousel">
             {
               hitBanners.map((item,index)=>{
                 return (
                   <div key={item.scm} className="item">
                     <a href={item.targetType!==3000?"/song?id="+item.targetId:item.url} 
-                       target="_blank">
+                       target="#/">
                       <img className="image" src={item.imageUrl} alt={item.scm}/>
                     </a>
                   </div>

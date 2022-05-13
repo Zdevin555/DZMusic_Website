@@ -13,15 +13,11 @@ export const FooterWrapper = styled.div`
             display:flex;
         }
     }
-
-    .footer-bottom{
-        height:70px;
-        background-color: blue;
-    }
 `;
 
 export const FooterLeft = styled.div`
     position:relative;
+    padding-left:27px;
 
     .declaim{
         display:flex;
@@ -61,59 +57,60 @@ export const FooterRight = styled.div`
         flex-direction: column; 
         height:90px;
         margin:0 15px;
+        padding-top:4px;
 
         .link{
             display:block;
-            height:73px;
-            width:73px; 
+            height:60px;
+            width:62px; 
             text-indent:-9999px;
-            background-size:170px auto;
+            background-size:139px auto;
         }
 
         .icon{
             display:block;
-            flex:1;
-            width:73px;
-            background-size:220px auto;
+            width:70px;
+            height:16px;
+            background-size:237px auto;
         }
 
         :nth-child(1){
            .link{
-            background-position: 0px 0px; 
+            background-position: 2px 0px; 
            }
 
            .icon{
-            background-position: 5px 3px;
+            background-position: 0px 2px;
            }
         } 
 
         :nth-child(2){
            .link{
-            background-position: -97px -81px; 
+            background-position: -78px -67px; 
            }
 
            .icon{
-            background-position: 5px -75px;
+            background-position: -2px -81px;
            }
         } 
 
         :nth-child(3){
            .link{
-            background-position: 0px -162px; 
+            background-position: 0px -134px; 
            }
 
            .icon{
-            background-position: 5px -101px;
+            background-position: -4px -109px;
            }
         } 
 
         :nth-child(4){
            .link{
-            background-position: -97px -162px; 
+            background-position: -78px -134px; 
            }
 
            .icon{
-            background-position: 5px -127px;
+            background-position: -2px -137px;
            }
         } 
     }

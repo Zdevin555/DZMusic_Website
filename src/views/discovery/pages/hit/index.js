@@ -179,6 +179,7 @@ function DZHit(){
           <DZBigHit/>
           <DZHitAlbum/>
           <DZHitRanking/>
+          <div className="hit-footer"/>
         </LeftHitTopics>
         <RightHitTopics>
 

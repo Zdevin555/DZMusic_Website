@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import pic1 from '@/assets/img/sprite_cover.png';
-import pic2 from '@/assets/img/sprite_icon.png';
 import pic3 from '@/assets/img/sprite_02.png';
 
 export const HitAlbumWrapper = styled.div`
@@ -15,75 +13,18 @@ export const HitAlbumWrapper = styled.div`
         height:200px;
         background-color: #f5f5f5;
         border:1px solid #d3d3d3;
-        display:flex;
-        justify-items:center;
-        padding-left:27px;
+        padding-left:16px;
         position:relative;
+
         .album-content{
-            .album-item{
-            width:110px;
-            height:110px;
-            margin:25px 15px;
-
-            a{
-                display:block;
-                font-size:14px;
-                line-height:18px;
-            }
-
-            .album-image{
-                height:110px;
-                width:128px;
-                background: url(${pic1}) 0 -627px;
-                background-size: 418px auto;
-                position:relative;
-
-                :hover{
-                    &::after{
-                       content:"";
-                       display:inline-block;
-                       position:absolute;
-                       width:28px;
-                       height:28px;
-                       background: url(${pic2}) 0 -140px; 
-                       bottom:5px;
-                       right:25px;
-                    }
-                }
-
-                .album-image-shadow{
-                    display:block;
-                    position:absolute;
-                    bottom:-12px;
-                    left:0;
-                    height:12px;
-                    width:116px;
-                    background: url(${pic3}) -286px 0;
-                    background-size: 453px auto;
-                }
-            }
-
-            .album-name{
-                color:#000;
-                margin-top:11px;
-            }
-
-            .album-artist{
-                color:#666
-            }
-        }
-        }
-        
+            padding:22px 25px;
+        }    
     }
-`
+`;
 
-export const AlbumCover = styled.div`
-    background-image:url(${props => props.bgImage});
- `;
-
- export const AlbumControl = styled.div`
+export const AlbumControl = styled.div`
     position:absolute;
-    top:42%;
+    top:38%;
     left:0;
     right:0; 
 
@@ -114,6 +55,4 @@ export const AlbumCover = styled.div`
             background: url(${pic3}) -324px -77px;
         }
     }
-  
-
  `;

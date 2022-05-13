@@ -15,6 +15,30 @@ export const HitBannerWrapper = styled.div`
 export const HitBannerLeft = styled.div`
     flex:1;
     width:0;
+
+    .ant-carousel{
+        .slick-dots li{
+            margin:0 6px;
+            height:10px;
+            width:8px;
+
+            button{
+                width:8px;
+                height:8px; 
+                background:url(${pic2}) -4px -350px;
+                transition-property:none;
+                transition-duration:0;
+            }
+
+            &.slick-active{
+                button{
+                    background:url(${pic2}) -22px -350px;
+                }
+            }
+
+        }
+    }
+
     .item{
         height:300px;
         overflow:hidden;

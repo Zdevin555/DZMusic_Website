@@ -48,7 +48,6 @@ const DZAppFooter = memo(() => {
           </FooterRight>
         </div>
       </div>
-      <div className="footer-bottom"></div>
     </FooterWrapper>
   )
 })

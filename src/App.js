@@ -27,6 +27,7 @@ import store from '@/store/index.js';
 
 import DZAppFooter from 'components/app-footer'
 import DZAppHeader from 'components/app-header'
+import DZPlayerBar from 'components/player-bar'
 
 
 
@@ -37,6 +38,7 @@ const App = memo(() => {
         <DZAppHeader />
         {renderRoutes(routes)}
         <DZAppFooter />
+        <DZPlayerBar/>
       </HashRouter>
     </Provider>
   )
