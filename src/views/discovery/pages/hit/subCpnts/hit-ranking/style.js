@@ -17,15 +17,3 @@ export const HitRankingWrapper = styled.div`
         justify-content:space-between
     }
 `;
-
-// export const List = styled.div`
-
-//     &:nth-child(${props=>props.index}){
-//         ::before{
-//             content:String(${props=>props.index});
-//             font-size:18px;
-//             color:#c10d0c;
-//             margin-right:12px;
-//         }
-//     }
-// `;

@@ -1,3 +1,7 @@
 import reducer from './reducer';
+import {getCurrentMusicInfoAction} from './actionCreator';
 
-export {reducer};
+export {
+    reducer,
+    getCurrentMusicInfoAction
+};

@@ -47,6 +47,30 @@ const padLeftZero = (str) =>{
     return ('00'+str).substr(str.length);
 }
 
-export const getMusicUrl = (id) => {
+export const musicUrlFormat = (id) => {
     return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+}
+
+export const tranStrToCharArr = (str)=>{
+    const arr = []; 
+    for(let i of str){  
+        arr.push(i);
+    };
+    return arr;
+}
+
+export const lyricSplitter = (lyric) => {
+    const lineLyrics = lyric.split("\n");
+    const patten = /^\[(\d{2}):(\d{2})\.(\d{2,3})\]/;
+    const lyrics = [];
+    for(let line of lineLyrics){
+        if(line){
+            const timeArr = patten.exec(line);
+            const totalTime = timeArr[1]*60*1000+timeArr[2]*1000+(timeArr[3].length>2?timeArr[3]*1:timeArr[3]*10);
+            const content = line.replace(patten,"").trim();
+            const lyricObj = {totalTime,content};
+            lyrics.push(lyricObj);
+        } 
+    } 
+    return lyrics; 
 }

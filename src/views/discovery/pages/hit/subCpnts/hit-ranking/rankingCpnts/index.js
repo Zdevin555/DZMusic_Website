@@ -1,23 +1,22 @@
 import React, { memo } from 'react';
+import {eventBus} from '@/common/local-data';
 
 import { imageSizeFormat } from '@/utils/data-format';
 
-import {
-    getCurrentMusicInfoAction   
-} from '@/components/player-bar/store/actionCreator';
 import {SingleRankingWrapper} from './style';
+
+
 
 const DZSingleRanking = memo((props) => {
     
-    const { info,rankName } = props;
+    const {info,rankName} = props;
     
     const imageCover = (info && imageSizeFormat(info.coverImgUrl, 90)) || "";
-    const tracks = (info && info.tracks) || ["数据更新中"];
+    const tracks = (info && info.tracks) || ["Data is Updating"];
 
-    // const playMusic = (id) => {
-
-    //     getCurrentMusicInfoAction(id)
-    // }
+    const playMusic = (item) => {
+        eventBus.emit("playThisMusic",item.id);
+    }
 
     return (
         <SingleRankingWrapper>
@@ -44,7 +43,7 @@ const DZSingleRanking = memo((props) => {
                                     </a>
                                     <div className="button">
                                         <ul>
-                                            <li className="play-icon2"/>
+                                            <li className="play-icon2" onClick={e=>playMusic(item)}/>
                                             <li className="add-icon"/>
                                             <li className="favor-icon2"/> 
                                         </ul>

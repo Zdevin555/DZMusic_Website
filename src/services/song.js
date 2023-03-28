@@ -4,25 +4,26 @@ export const getMusicInfo = (ids) => {
     return request({
         url:"/song/detail",
         params:{
-            ids
+            ids:ids
         }
     })
-}
+};
 
-export const hasMusicUrl = (id) =>{
+export const getMusicUrl = (id) => {
     return request({
-        url:"/check/music",
+        url:"/song/url",
+        params:{
+            id:id
+        }
+    })
+};
+
+export const getLyric = (id) => {
+    return request({
+        url:"/lyric",
         params:{
             id
         }
     })
-}
+};
 
-// export const getMusicData = (id) => {
-//     return request({
-//         url:"/song/url",
-//         params:{
-//             id
-//         }
-//     })
-// }

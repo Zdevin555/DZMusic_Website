@@ -14,13 +14,13 @@ import {
 const DZHitAlbum = memo(() => {
 
   const dispatch = useDispatch();
-  const { hitAlbums } = useSelector(state => ({
+  const { hitAlbums = [] } = useSelector(state => ({
     hitAlbums: state.getIn(["hit", "hitAlbums"])
   }), shallowEqual);
 
   const albumRef = useRef();
   useEffect(() => {
-    dispatch(getHitAlbumsAction(10, "hot"));
+    dispatch(getHitAlbumsAction(10));
   }, [dispatch]);
 
   return (

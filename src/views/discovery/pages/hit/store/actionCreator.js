@@ -16,12 +16,9 @@ const changeHitBannersAction = (res) => ({
     hitBanners:res.banners
 });
 
-//hit-banner
+
 export const getHitBannersAction = () => {
-    //最终dispatch接收的thunk-action函数并不是getTopBannerAction指向
-    //的函数，而是指向函数返回的函数（即返回值也是函数，dispatch是原生）
-    //。为什么不直接传入getTopBannerAction代表的函数呢?原因是该函数本身
-    //还可以接收参数
+    
     return dispatch => {
         getHitBanners().then(res=>{
             dispatch(changeHitBannersAction(res))
@@ -29,7 +26,7 @@ export const getHitBannersAction = () => {
     }
 }
 
-//hit-song
+
 const changeBigHitsAction = (res) => ({
     type:actionType.CHANGE_BIG_HITS,
     bigHits:res.result
@@ -43,7 +40,6 @@ export const getBigHitsAction = (limit) => {
     }
 };
 
-//hit-album
 const changeHitAlbumsAction = (res) => ({
     type:actionType.CHANGE_HIT_ALBUMS,
     hitAlbums:res.albums
@@ -57,7 +53,7 @@ export const getHitAlbumsAction = (limit,type) => {
     }
 }
 
-//hit-ranking
+
 const changeUpsurgeRankingAction = (res) =>({
     type:actionType.CHANGE_HIT_UPSURGE_RANKING,
     hitUpsurgeRanking:res.playlist
@@ -78,16 +74,15 @@ const getSpecificRankingAction = (obj) => {
     return dispatch => {
         getSpecificRanking(id).then(res=>{
             switch(index){
-                case 0:
+                case 12:
                     dispatch(changeUpsurgeRankingAction(res));
                     break;
-                case 1:
+                case 16:
                     dispatch(changeFreshRankingAction(res));
                     break;
-                case 2:
+                case 17:
                     dispatch(changeOriginalRankingAction(res));
                     break;
-                //default不写有警告，里面可以什么都不写
                 default:
             }
         });

@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 
 import { discoveryMenu } from '@/common/local-data';
-// import request from '@/services/request';
 
 import { NavLink } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';

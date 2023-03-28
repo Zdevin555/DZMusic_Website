@@ -1,41 +1,37 @@
 import axios from 'axios';
 
-import { BASE_URL,TIMEOUT } from './config';
+import { BASE_URL,TIMEOUT,RETRY,RETRY_DELAY } from './config';
 
 const instance = axios.create({
     baseURL:BASE_URL,
-    timeout:TIMEOUT
+    timeout:TIMEOUT,
+    retry: RETRY,
+    retryDelay:RETRY_DELAY
 });
 
 instance.interceptors.request.use(config => {
-    // 1.发送网络请求时, 在界面的中间位置显示Loading的组件
-  
-    // 2.某一些请求要求用户必须携带token, 如果没有携带, 那么直接跳转到登录页面
-  
-    // 3.params/data序列化的操作
-    // console.log("请求被拦截");
-  
     return config;
   }, err => {
   
   });
   
-  instance.interceptors.response.use(res => {
-    return res.data;
-  }, err => {
-    if (err && err.response) {
-      switch (err.response.status) {
-        case 400:
-          console.log("请求错误");
-          break;
-        case 401:
-          console.log("未授权访问");
-          break;
-        default:
-          console.log("其他错误信息");
-      }
+instance.interceptors.response.use(res => {
+  return res.data;
+}, err=>{
+    var config = err.config;
+    if (!config || !config.retry) return err;
+    config.__retryCount = config.__retryCount || 0;
+    if (config.__retryCount >= config.retry) {
+        return err;
     }
-    return err;
+    config.__retryCount += 1;
+    var backoff = new Promise(res=>{
+        setTimeout(
+          ()=>res(), 
+          config.retryDelay || 1);
+    });
+  
+    return backoff.then(() => instance(config));
   });
   
-  export default instance;
+export default instance;

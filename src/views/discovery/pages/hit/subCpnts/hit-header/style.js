@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const HitHeaderWrapper = styled.div`
-    //1.给盒子设置高度
     height:50px;
     border-bottom:2px solid #C10D0C;
     display:flex;
@@ -14,7 +13,6 @@ export const HitHeaderWrapper = styled.div`
 
     .header-left{
         display:flex;
-        //2.设置垂直对齐方式(重点)
         align-items:center;
 
         .header-left-icon{

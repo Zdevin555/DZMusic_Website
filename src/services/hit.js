@@ -15,12 +15,11 @@ export const getBigHits = (limit) => {
     })
 }; 
 
-export const getHitAlbums = (limit,type) => {
+export const getHitAlbums = (limit) => {
     return request({
-        url:"/top/album",
+        url:"/album/newest",
         params:{
-            limit,
-            type
+            limit
         }
     })
 }; 

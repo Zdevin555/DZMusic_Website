@@ -12,14 +12,11 @@ import {
 } from './style';
 
 const DZHitBanner = memo(() => {
-  //state
   const [currentIndex, setCurrentIndex] = useState(0);
-  // 组件和redux关联: 获取数据和进行操作
   const { hitBanners } = useSelector(state =>({
     hitBanners:state.getIn(["hit","hitBanners"])
   }),shallowEqual)
   const dispatch = useDispatch();
-  // 其他hooks
   useEffect(() => {
     dispatch(getHitBannersAction());
   }, [dispatch])
@@ -31,7 +28,6 @@ const DZHitBanner = memo(() => {
        setTimeout(()=>{setCurrentIndex(to);},0);
      })
   },[])
-  // 其他业务逻辑
   const bgImage = hitBanners[currentIndex] && (hitBanners[currentIndex].imageUrl+"?imageView&blur=40x20");
   
   return (

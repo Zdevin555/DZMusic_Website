@@ -7,5 +7,4 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const enhancers = composeEnhancer(applyMiddleware(thunk));
 const store = createStore(reducers,enhancers);
 
-//共享store
 export default store;

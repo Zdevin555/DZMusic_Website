@@ -1,3 +1,5 @@
+import EventEmitter from 'events';
+
 export const headerBanners = [
     {
         title:"Discover",
@@ -90,3 +92,15 @@ export const rightFooterContent = [
 
 export const company = "@2022 DZMusic,LLC. All rights reserved";
 
+export const REPEAT_MODE = {
+    REPEAT_ALL:0,
+    REPEAT_ONE:1,
+    SHUFFLE:2,
+    properties:{
+      0:{name:"Repeat All"},
+      1:{name:"Repeat One"},
+      2:{name:"Shuffle"}
+    }
+  };
+
+export const eventBus = new EventEmitter();

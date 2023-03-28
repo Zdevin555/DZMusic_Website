@@ -16,13 +16,13 @@ const DZHitRanking = memo(() => {
     state => ({
       hitUpsurgeRanking: state.getIn(["hit", "hitUpsurgeRanking"]),
       hitFreshRanking: state.getIn(["hit", "hitFreshRanking"]),
-      hitOriginalRanking: state.getIn(["hit", "hitOriginalRanking"]),
+      hitOriginalRanking: state.getIn(["hit", "hitOriginalRanking"])
     }), shallowEqual);
 
   useEffect(() => {
-    dispatch(getHitRankingsAction(0));
-    dispatch(getHitRankingsAction(1));
-    dispatch(getHitRankingsAction(2));
+    dispatch(getHitRankingsAction(16));
+    dispatch(getHitRankingsAction(17));
+    dispatch(getHitRankingsAction(12));
   }, [dispatch])
 
   return (
@@ -31,9 +31,12 @@ const DZHitRanking = memo(() => {
         <DZHitHeader title="Ranking" />
       </div>
       <div className="ranking">
-        <DZSingleRanking info={hitUpsurgeRanking} rankName={"Upsurge"}/>
-        <DZSingleRanking info={hitFreshRanking} rankName={"Fresh"}/>
-        <DZSingleRanking info={hitOriginalRanking} rankName={"Original"}/>
+        <DZSingleRanking info={hitUpsurgeRanking}
+                         rankName={"Upsurge"}/>
+        <DZSingleRanking info={hitFreshRanking} 
+                         rankName={"Fresh"}/>
+        <DZSingleRanking info={hitOriginalRanking} 
+                         rankName={"Original"}/>
       </div>
     </HitRankingWrapper>
   )

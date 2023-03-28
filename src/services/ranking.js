@@ -10,7 +10,7 @@ export const getSpecificRanking = (id) => {
     return request({
         url:"/playlist/detail",
         params:{
-            id
+            id:id,     
         }
     })
 }; 

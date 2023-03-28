@@ -1,8 +1,9 @@
-import React, { memo } from 'react'
+import React, { memo } from 'react';
+import DZComingSoon from '@/components/coming-soon';
 
 const DZRanking = memo(() => {
   return (
-    <div>DZRanking</div>
+    <DZComingSoon/>
   )
 })
 
