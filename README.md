@@ -1,3 +1,9 @@
+# Overview
+
+This project is a personal music website built under the react framework with the help of Redux and React Router. It has multiple sub-sections such as rankings and bottom music player. 
+Note: Some music resources come from the NeteaseCloudMusicApi launched by developer Binaryify on GitHub. The references on this website are purely for learning and communication 
+(update: the above interface has been discontinued due to receipt of legal notice from NetEase, 2024.1.25).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
